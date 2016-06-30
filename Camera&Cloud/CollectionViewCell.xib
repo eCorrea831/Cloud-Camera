@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell1" id="gTV-IL-0wX" customClass="CollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="frL-bO-TeU">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="frL-bO-TeU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="63d-HB-X3N"/>
+                <constraint firstItem="frL-bO-TeU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ExT-yB-Wv2"/>
+                <constraint firstAttribute="trailing" secondItem="frL-bO-TeU" secondAttribute="trailing" id="UXj-aL-LuI"/>
+                <constraint firstItem="frL-bO-TeU" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Zk3-T8-mZz"/>
+                <constraint firstItem="frL-bO-TeU" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="d5H-5d-b1A"/>
+                <constraint firstAttribute="bottom" secondItem="frL-bO-TeU" secondAttribute="bottom" id="dB0-OZ-JHb"/>
+                <constraint firstItem="frL-bO-TeU" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="q1X-Fe-ARX"/>
+            </constraints>
+            <size key="customSize" width="80" height="82"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Zk3-T8-mZz"/>
+                    <exclude reference="d5H-5d-b1A"/>
+                    <exclude reference="q1X-Fe-ARX"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="imageView" destination="frL-bO-TeU" id="c7N-ho-X0p"/>
+            </connections>
+            <point key="canvasLocation" x="497" y="463"/>
+        </collectionViewCell>
+    </objects>
+</document>
