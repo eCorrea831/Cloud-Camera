@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA446CA21D25576C00F96268 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AA446CA11D25576C00F96268 /* README */; };
 		AA84113D1D244ABF000C5AAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84113C1D244ABF000C5AAA /* main.m */; };
 		AA8411401D244ABF000C5AAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84113F1D244ABF000C5AAA /* AppDelegate.m */; };
 		AA8411461D244ABF000C5AAA /* PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8411451D244ABF000C5AAA /* PictureViewController.m */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA446CA11D25576C00F96268 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AA8411381D244ABF000C5AAA /* Camera&Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera&Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA84113C1D244ABF000C5AAA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA84113E1D244ABF000C5AAA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		AA84112F1D244ABF000C5AAA = {
 			isa = PBXGroup;
 			children = (
+				AA446CA11D25576C00F96268 /* README */,
 				AA84113A1D244ABF000C5AAA /* Camera&Cloud */,
 				AA8411391D244ABF000C5AAA /* Products */,
 			);
@@ -190,6 +193,7 @@
 				AA84114B1D244ABF000C5AAA /* Assets.xcassets in Resources */,
 				AA84118D1D245777000C5AAA /* CollectionViewCell.xib in Resources */,
 				AA8411491D244ABF000C5AAA /* Main.storyboard in Resources */,
+				AA446CA21D25576C00F96268 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +360,7 @@
 				AA8411541D244ABF000C5AAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
