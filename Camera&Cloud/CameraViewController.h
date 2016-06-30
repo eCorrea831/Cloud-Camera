@@ -1,5 +1,5 @@
 //
-//  PictureViewController.h
+//  CameraViewController.h
 //  Camera&Cloud
 //
 //  Created by Aditya Narayan on 6/29/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PictureViewController : UIViewController
+@interface CameraViewController : UIViewController
 
 
 @end

@@ -1,18 +1,18 @@
 //
-//  PictureViewController.m
+//  CameraViewController.m
 //  Camera&Cloud
 //
 //  Created by Aditya Narayan on 6/29/16.
 //  Copyright © 2016 TurnToTech. All rights reserved.
 //
 
-#import "PictureViewController.h"
+#import "CameraViewController.h"
 
-@interface PictureViewController ()
+@interface CameraViewController ()
 
 @end
 
-@implementation PictureViewController
+@implementation CameraViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

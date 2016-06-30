@@ -12,6 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    [self.imageView.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    [self.imageView.layer setBorderWidth:4.0];
 }
 
 @end

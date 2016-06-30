@@ -11,9 +11,10 @@
 @interface PicDetailsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel * picName;
-@property (weak, nonatomic) IBOutlet UIImageView * picImage;
+@property (strong, nonatomic) IBOutlet UIImageView * picImage;
 @property (weak, nonatomic) IBOutlet UITableView * commentsTableView;
 
+- (IBAction)clickedBack:(id)sender;
 - (IBAction)thumbsUpClicked:(id)sender;
 - (IBAction)thumbsDownclicked:(id)sender;
 

@@ -16,12 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.picImage.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    [self.picImage.layer setBorderWidth:2.0];
+    
+    [self.commentsTableView.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    [self.commentsTableView.layer setBorderWidth:2.0];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+
+- (IBAction)clickedBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)thumbsUpClicked:(id)sender {
     
@@ -31,6 +41,6 @@
     
 }
 
-//[self dismissViewControllerAnimated:YES completion:nil];
+
 
 @end
