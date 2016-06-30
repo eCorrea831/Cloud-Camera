@@ -34,11 +34,11 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
     UINib * headerNib = [UINib nibWithNibName:@"CollectionReusableView" bundle:nil];
     [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header1"];
     
-    UIImage * image1 = [UIImage imageNamed:@"camera.png"];
-    UIImage * image2 = [UIImage imageNamed:@"cloud.png"];
-    UIImage * image3 = [UIImage imageNamed:@"thumbs_up.png"];
+    CloudImage * imageView1 = [[CloudImage alloc]initWithImage:[UIImage imageNamed:@"camera.png"] name:@"camera" dateCreated:[NSDate date] fileType:@"png"];
+    CloudImage * imageView2 = [[CloudImage alloc]initWithImage:[UIImage imageNamed:@"cloud.png"] name:@"cloud" dateCreated:[NSDate date] fileType:@"png"];
+    CloudImage * imageView3 = [[CloudImage alloc]initWithImage:[UIImage imageNamed:@"thumbs_up.png"] name:@"thumbs_up" dateCreated:[NSDate date] fileType:@"png"];
     
-    self.imageArray = [[NSMutableArray alloc]initWithObjects:image1, image2, image3, nil];
+    self.imageArray = [[NSMutableArray alloc]initWithObjects:imageView1, imageView2, imageView3, nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +65,7 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout *)collectionViewFlowLayout insetForSectionAtIndex:(NSInteger)section {
     
     UICollectionViewFlowLayout * flowLayout = collectionViewFlowLayout;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 1, 1, 1);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     return flowLayout.sectionInset;
 }
@@ -83,21 +83,23 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
     static NSString * CellIdentifier = @"Cell1";
     CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    UIImage * iv = [self.imageArray objectAtIndex:indexPath.row];
-    cell.imageView.image = iv;
+    CloudImage * iv = [self.imageArray objectAtIndex:indexPath.row];
+    cell.imageView.image = iv.image;
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    self.picDetailsVC = [[PicDetailsViewController alloc]init];
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.picDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"Pic Details View Controller"];
-    self.picDetailsVC.picImage = [[UIImageView alloc]initWithImage:[self.imageArray objectAtIndex:indexPath.row]];
     
     [self.picDetailsVC setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:self.picDetailsVC animated:YES completion:nil];
+    
+    CloudImage * iv = [self.imageArray objectAtIndex:indexPath.row];
+    
+    self.picDetailsVC.picImage.image = iv.image;
 }
 
 @end

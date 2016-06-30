@@ -22,12 +22,14 @@
     
     [self.commentsTableView.layer setBorderColor:[[UIColor blackColor]CGColor]];
     [self.commentsTableView.layer setBorderWidth:2.0];
+    
+    self.numLikes = 0;
+    self.numDislikes = 0;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (IBAction)clickedBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -35,12 +37,14 @@
 
 - (IBAction)thumbsUpClicked:(id)sender {
     
+    self.numLikes ++;
+    self.numLikesLabel.text = [NSString stringWithFormat:@"%d",self.numLikes];
 }
 
 - (IBAction)thumbsDownclicked:(id)sender {
     
+    self.numDislikes ++;
+    self.numDislikesLabel.text = [NSString stringWithFormat:@"%d",self.numDislikes];
 }
-
-
 
 @end

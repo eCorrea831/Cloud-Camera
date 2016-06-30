@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CloudImage.h"
 
 @interface CollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView * imageView;
+@property (strong, nonatomic) IBOutlet CloudImage * imageView;
 
 @end
