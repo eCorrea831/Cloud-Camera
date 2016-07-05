@@ -10,6 +10,4 @@
 
 @interface CloudCollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, retain) NSMutableArray * imageArray;
-
 @end

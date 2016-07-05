@@ -2,7 +2,7 @@
 //  CollectionViewCell.h
 //  Camera&Cloud
 //
-//  Created by Aditya Narayan on 6/29/16.
+//  Created by Aditya Narayan on 7/5/16.
 //  Copyright © 2016 TurnToTech. All rights reserved.
 //
 
@@ -11,6 +11,6 @@
 
 @interface CollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet CloudImage * imageView;
+@property (strong, nonatomic) IBOutlet UIImageView * cellImageView;
 
 @end

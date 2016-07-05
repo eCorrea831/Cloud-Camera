@@ -17,34 +17,53 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.picImage.layer setBorderColor:[[UIColor blackColor]CGColor]];
-    [self.picImage.layer setBorderWidth:2.0];
+//    [self.commentsTableView.layer setBorderColor:[[UIColor blackColor]CGColor]];
+//    [self.commentsTableView.layer setBorderWidth:2.0];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
     
-    [self.commentsTableView.layer setBorderColor:[[UIColor blackColor]CGColor]];
-    [self.commentsTableView.layer setBorderWidth:2.0];
+    self.picImage.image = self.cloudImage.image;
     
     self.numLikes = 0;
-    self.numDislikes = 0;
+    
+    self.picCommentTextView.hidden = YES;
+    self.sendButton.hidden = YES;
+    
+    if (self.numLikes == 0) {
+        self.numLikesLabel.hidden = YES;
+    } else {
+        self.numLikesLabel.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)clickedBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)thumbsUpClicked:(id)sender {
+- (IBAction)heartClicked:(id)sender {
     
     self.numLikes ++;
-    self.numLikesLabel.text = [NSString stringWithFormat:@"%d",self.numLikes];
+    self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.numLikes];
+    self.numLikesLabel.hidden = NO;
 }
 
-- (IBAction)thumbsDownclicked:(id)sender {
+- (IBAction)moreOptionsClicked:(id)sender {
+    //bring up delete options
+}
+
+- (IBAction)commentClicked:(id)sender {
     
-    self.numDislikes ++;
-    self.numDislikesLabel.text = [NSString stringWithFormat:@"%d",self.numDislikes];
+    //show textfield and send button
+    self.picCommentTextView.hidden = NO;
+    self.sendButton.hidden = NO;
+}
+
+- (IBAction)sendCommentClicked:(id)sender {
+    
+    //add comment to tableview
+    self.picCommentTextView.hidden = YES;
+    self.sendButton.hidden = YES;
 }
 
 @end

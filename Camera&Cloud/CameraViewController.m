@@ -7,8 +7,12 @@
 //
 
 #import "CameraViewController.h"
+#import "CloudCollectionViewController.h"
+#import "DAO.h"
 
 @interface CameraViewController ()
+
+@property (nonatomic, retain) CloudCollectionViewController * cloudCollectionVC;
 
 @end
 
@@ -16,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.cloudCollectionVC = [storyboard instantiateViewControllerWithIdentifier:@"CloudCollectionViewController"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,7 +32,7 @@
 - (IBAction)openCamera:(id)sender {
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
         picker.allowsEditing = false;
@@ -47,29 +54,13 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    self.imagePicked.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-//    FBSDKSharePhoto * photo = [[FBSDKSharePhoto alloc] init];
-//    photo.image = self.imagePicked.image;
-//    photo.userGenerated = YES;
-//    FBSDKSharePhotoContent * content = [[FBSDKSharePhotoContent alloc] init];
-//    content.photos = @[photo];
-//    [FBSDKShareDialog showFromViewController:self.navigationController.viewControllers[0] withContent:content delegate:self];
-//    [self dismissViewControllerAnimated:true completion:nil];
-}
+    //FIXME:Image is nil
+    //self.imagePicked.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    DAO * dao = [DAO sharedInstance];
+    //[dao.imageArray addObject:self.imagePicked];
+    [self.navigationController pushViewController:self.cloudCollectionVC animated:YES];
 
-- (IBAction)saveImage:(id)sender {
-    
-    NSData * imageData = UIImageJPEGRepresentation(_imagePicked.image, 0.6);
-    UIImage * compressedJPGImage = [UIImage imageWithData:imageData];
-    //UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil);
-    
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"Wow" message:@"Your image has been saved to the cloud!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction * ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
-    [alertController addAction:ok];
-    [self presentViewController:alertController animated:YES completion:nil];
+    //[self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

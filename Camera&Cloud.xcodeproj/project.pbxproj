@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */; };
+		AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */; };
+		AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A4C1D2C3E38004E868F /* DAO.m */; };
 		AA446CA21D25576C00F96268 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AA446CA11D25576C00F96268 /* README */; };
 		AA446CAA1D2564BB00F96268 /* CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA446CA91D2564BB00F96268 /* CollectionReusableView.m */; };
 		AA446CAC1D25650300F96268 /* CollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA446CAB1D25650300F96268 /* CollectionReusableView.xib */; };
@@ -19,11 +22,14 @@
 		AA84114E1D244ABF000C5AAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA84114C1D244ABF000C5AAA /* LaunchScreen.storyboard */; };
 		AA84115B1D244B50000C5AAA /* CloudCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84115A1D244B50000C5AAA /* CloudCollectionViewController.m */; };
 		AA8411841D245393000C5AAA /* PicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8411831D245393000C5AAA /* PicDetailsViewController.m */; };
-		AA84118C1D245777000C5AAA /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84118A1D245777000C5AAA /* CollectionViewCell.m */; };
-		AA84118D1D245777000C5AAA /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA84118B1D245777000C5AAA /* CollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		AA2D3A4B1D2C3E38004E868F /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		AA2D3A4C1D2C3E38004E868F /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
 		AA446CA11D25576C00F96268 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AA446CA81D2564BB00F96268 /* CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableView.h; sourceTree = "<group>"; };
 		AA446CA91D2564BB00F96268 /* CollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableView.m; sourceTree = "<group>"; };
@@ -44,9 +50,6 @@
 		AA84115A1D244B50000C5AAA /* CloudCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudCollectionViewController.m; path = ../CloudCollectionViewController.m; sourceTree = "<group>"; };
 		AA8411821D245393000C5AAA /* PicDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicDetailsViewController.h; sourceTree = "<group>"; };
 		AA8411831D245393000C5AAA /* PicDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicDetailsViewController.m; sourceTree = "<group>"; };
-		AA8411891D245777000C5AAA /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
-		AA84118A1D245777000C5AAA /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
-		AA84118B1D245777000C5AAA /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +114,8 @@
 		AA8411571D244AE1000C5AAA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA8411891D245777000C5AAA /* CollectionViewCell.h */,
-				AA84118A1D245777000C5AAA /* CollectionViewCell.m */,
+				AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */,
+				AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */,
 				AA446CA81D2564BB00F96268 /* CollectionReusableView.h */,
 				AA446CA91D2564BB00F96268 /* CollectionReusableView.m */,
 				AA8411591D244B50000C5AAA /* CloudCollectionViewController.h */,
@@ -130,7 +133,7 @@
 			children = (
 				AA8411471D244ABF000C5AAA /* Main.storyboard */,
 				AA84114C1D244ABF000C5AAA /* LaunchScreen.storyboard */,
-				AA84118B1D245777000C5AAA /* CollectionViewCell.xib */,
+				AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */,
 				AA446CAB1D25650300F96268 /* CollectionReusableView.xib */,
 			);
 			name = View;
@@ -139,6 +142,8 @@
 		AA8411881D2455D1000C5AAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA2D3A4B1D2C3E38004E868F /* DAO.h */,
+				AA2D3A4C1D2C3E38004E868F /* DAO.m */,
 				AA446CF61D25A9D800F96268 /* CloudImage.h */,
 				AA446CF71D25A9D800F96268 /* CloudImage.m */,
 			);
@@ -204,7 +209,7 @@
 			files = (
 				AA84114E1D244ABF000C5AAA /* LaunchScreen.storyboard in Resources */,
 				AA84114B1D244ABF000C5AAA /* Assets.xcassets in Resources */,
-				AA84118D1D245777000C5AAA /* CollectionViewCell.xib in Resources */,
+				AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */,
 				AA8411491D244ABF000C5AAA /* Main.storyboard in Resources */,
 				AA446CAC1D25650300F96268 /* CollectionReusableView.xib in Resources */,
 				AA446CA21D25576C00F96268 /* README in Resources */,
@@ -223,8 +228,9 @@
 				AA84115B1D244B50000C5AAA /* CloudCollectionViewController.m in Sources */,
 				AA8411461D244ABF000C5AAA /* CameraViewController.m in Sources */,
 				AA8411401D244ABF000C5AAA /* AppDelegate.m in Sources */,
-				AA84118C1D245777000C5AAA /* CollectionViewCell.m in Sources */,
 				AA84113D1D244ABF000C5AAA /* main.m in Sources */,
+				AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */,
+				AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */,
 				AA446CAA1D2564BB00F96268 /* CollectionReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

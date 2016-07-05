@@ -2,7 +2,7 @@
 //  CollectionViewCell.m
 //  Camera&Cloud
 //
-//  Created by Aditya Narayan on 6/29/16.
+//  Created by Aditya Narayan on 7/5/16.
 //  Copyright © 2016 TurnToTech. All rights reserved.
 //
 
@@ -12,9 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    [self.imageView.layer setBorderColor:[[UIColor blackColor]CGColor]];
-    [self.imageView.layer setBorderWidth:4.0];
 }
 
 @end

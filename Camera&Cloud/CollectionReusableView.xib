@@ -11,14 +11,14 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud Photo Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5k7-WM-Db8">
-                    <rect key="frame" x="140" y="13" width="221" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5k7-WM-Db8">
+                    <rect key="frame" x="205" y="13" width="91" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.20814148330000001" green="0.68277867029999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.4392156862745098" green="0.44313725490196076" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="5k7-WM-Db8" firstAttribute="centerY" secondItem="hFD-dm-h2m" secondAttribute="centerY" id="Uhx-gg-cpV"/>
                 <constraint firstItem="5k7-WM-Db8" firstAttribute="centerX" secondItem="hFD-dm-h2m" secondAttribute="centerX" id="xtG-V3-akN"/>

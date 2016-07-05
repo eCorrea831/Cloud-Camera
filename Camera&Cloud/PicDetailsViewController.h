@@ -11,16 +11,18 @@
 
 @interface PicDetailsViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel * picName;
-@property (strong, nonatomic) IBOutlet CloudImage * picImage;
+@property (strong, nonatomic) IBOutlet UIImageView * picImage;
+@property (nonatomic, retain) CloudImage * cloudImage;
 @property (weak, nonatomic) IBOutlet UITableView * commentsTableView;
-@property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numDislikesLabel;
+@property (weak, nonatomic) IBOutlet UILabel * numLikesLabel;
 @property (nonatomic) int numLikes;
-@property (nonatomic) int numDislikes;
+@property (weak, nonatomic) IBOutlet UITextField * picCommentTextView;
+@property (nonatomic) NSString * picComment;
+@property (weak, nonatomic) IBOutlet UIButton * sendButton;
 
-- (IBAction)clickedBack:(id)sender;
-- (IBAction)thumbsUpClicked:(id)sender;
-- (IBAction)thumbsDownclicked:(id)sender;
+- (IBAction)heartClicked:(id)sender;
+- (IBAction)moreOptionsClicked:(id)sender;
+- (IBAction)commentClicked:(id)sender;
+- (IBAction)sendCommentClicked:(id)sender;
 
 @end

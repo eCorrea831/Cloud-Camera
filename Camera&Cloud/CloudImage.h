@@ -8,16 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CloudImage : UIImageView
+@interface CloudImage : NSObject
 
-@property (retain, nonatomic) NSString * name;
+@property (nonatomic, retain) UIImage * image;
 @property (nonatomic) int numLikes;
-@property (nonatomic) int numDislikes;
 @property (retain, nonatomic) NSMutableArray * commentsArray;
 @property (retain, nonatomic) NSString * reference;
 @property (retain, nonatomic) NSDate * dateCreated;
 @property (retain, nonatomic) NSString * fileType;
 
-- (instancetype)initWithImage:(UIImage *)image name:(NSString *)name dateCreated:(NSDate *)dateCreated fileType:(NSString *)fileType;
+- (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated fileType:(NSString *)fileType;
 
 @end

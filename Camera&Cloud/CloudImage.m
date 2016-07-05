@@ -10,19 +10,16 @@
 
 @implementation CloudImage
 
-- (instancetype)initWithImage:(UIImage *)image name:(NSString *)name dateCreated:(NSDate *)dateCreated fileType:(NSString *)fileType {
+- (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated fileType:(NSString *)fileType {
     
     self = [super init];
     
     if (self) {
-        super.image = image;
-        
-        _name = name;
+        _image = image;
         _dateCreated = dateCreated;
         _fileType = fileType;
         
         _numLikes = 0;
-        _numDislikes = 0;
         _commentsArray = [[NSMutableArray alloc]init];
         
         return self;
