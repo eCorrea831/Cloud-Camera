@@ -39,6 +39,12 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
     self.picDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"PicDetailsViewController"];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    animated = YES;
+    
+    [self.collectionView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

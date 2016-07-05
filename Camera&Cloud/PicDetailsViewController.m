@@ -21,7 +21,7 @@
 //    [self.commentsTableView.layer setBorderWidth:2.0];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     
     self.picImage.image = self.cloudImage.image;
     

@@ -172,6 +172,7 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="GuR-h1-wd2"/>
+                                        <exclude reference="iKf-6Q-QmK"/>
                                     </mask>
                                 </variation>
                             </tableView>
@@ -179,6 +180,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2EN-dj-6yA" firstAttribute="leading" secondItem="vHJ-yX-cdH" secondAttribute="leadingMargin" constant="-20" id="0j8-gD-uJG"/>
+                            <constraint firstItem="opO-jO-oN0" firstAttribute="top" secondItem="txL-fM-gkK" secondAttribute="bottom" constant="17" id="3uH-Ms-gqj"/>
                             <constraint firstItem="NHF-Jk-Sde" firstAttribute="top" secondItem="ItJ-kD-FWz" secondAttribute="bottom" constant="8" id="72Y-TB-sOX"/>
                             <constraint firstItem="2EN-dj-6yA" firstAttribute="top" secondItem="opO-jO-oN0" secondAttribute="bottom" constant="8" id="72u-O3-hg1"/>
                             <constraint firstItem="txL-fM-gkK" firstAttribute="leading" secondItem="NHF-Jk-Sde" secondAttribute="trailing" constant="8" id="79U-kv-RKH"/>

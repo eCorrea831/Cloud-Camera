@@ -12,17 +12,12 @@
 
 @interface CameraViewController ()
 
-@property (nonatomic, retain) CloudCollectionViewController * cloudCollectionVC;
-
 @end
 
 @implementation CameraViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.cloudCollectionVC = [storyboard instantiateViewControllerWithIdentifier:@"CloudCollectionViewController"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,13 +49,19 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    //FIXME:Image is nil
-    //self.imagePicked.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    DAO * dao = [DAO sharedInstance];
-    //[dao.imageArray addObject:self.imagePicked];
-    [self.navigationController pushViewController:self.cloudCollectionVC animated:YES];
-
-    //[self dismissViewControllerAnimated:true completion:nil];
+    [self dismissViewControllerAnimated:true completion:nil];
+    
+    self.imagePicked = [info objectForKey:UIImagePickerControllerOriginalImage];
+    CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date] fileType:@"png"];
+    [[[DAO sharedInstance] imageArray] addObject:newImage];
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CloudCollectionViewController * cloudCollectionVC = [storyboard instantiateViewControllerWithIdentifier:@"CloudCollectionViewController"];
+    
+//    UINavigationController *vc = self.tabBarController.viewControllers[0];
+//    
+//    [self presentViewController:vc.childViewControllers[0] animated:YES completion:nil];
+    //[self presentViewController:vc animated:YES completion:nil];
 }
 
 @end
