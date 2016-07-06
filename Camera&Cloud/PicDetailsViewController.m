@@ -8,6 +8,7 @@
 
 #import "PicDetailsViewController.h"
 #import "TableViewCell.h"
+#import "DAO.h"
 
 @interface PicDetailsViewController ()
 
@@ -84,8 +85,32 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 }
 
 - (IBAction)moreOptionsClicked:(id)sender {
-    //TODO:bring up delete options
-    //TODO:delete locally & from firebase
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    
+    
+    UIAlertAction * deleteAction = [UIAlertAction actionWithTitle:@"Delete Photo"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self deletePhoto];
+                                                          }];
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:deleteAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)deletePhoto {
+    
+    [[[DAO sharedInstance] imageArray] removeObject:self.cloudImage];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)commentClicked:(id)sender {
