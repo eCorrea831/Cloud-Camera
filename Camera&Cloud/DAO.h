@@ -15,4 +15,9 @@
 
 + (DAO *)sharedInstance;
 
+//TODO:create these methods with firebase
+//- (void)getPhotosFromFirebase;
+//- (void)addPhotoToFirebase;
+//- (void)removePhotoFromFirebase;
+
 @end

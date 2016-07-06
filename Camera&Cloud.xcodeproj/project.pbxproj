@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BCE11821D2D47580057882D /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCE11801D2D47580057882D /* TableViewCell.m */; };
+		7BCE11831D2D47580057882D /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BCE11811D2D47580057882D /* TableViewCell.xib */; };
 		AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */; };
 		AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */; };
 		AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A4C1D2C3E38004E868F /* DAO.m */; };
@@ -25,12 +27,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7BCE117F1D2D47580057882D /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		7BCE11801D2D47580057882D /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		7BCE11811D2D47580057882D /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		AA2D3A4B1D2C3E38004E868F /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		AA2D3A4C1D2C3E38004E868F /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
-		AA446CA11D25576C00F96268 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		AA446CA11D25576C00F96268 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
 		AA446CA81D2564BB00F96268 /* CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableView.h; sourceTree = "<group>"; };
 		AA446CA91D2564BB00F96268 /* CollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableView.m; sourceTree = "<group>"; };
 		AA446CAB1D25650300F96268 /* CollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableView.xib; sourceTree = "<group>"; };
@@ -66,7 +71,6 @@
 		AA84112F1D244ABF000C5AAA = {
 			isa = PBXGroup;
 			children = (
-				AA446CA11D25576C00F96268 /* README */,
 				AA84113A1D244ABF000C5AAA /* Camera&Cloud */,
 				AA8411391D244ABF000C5AAA /* Products */,
 			);
@@ -95,6 +99,7 @@
 		AA84113B1D244ABF000C5AAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA446CA11D25576C00F96268 /* README */,
 				AA84114A1D244ABF000C5AAA /* Assets.xcassets */,
 				AA84114F1D244ABF000C5AAA /* Info.plist */,
 				AA84113C1D244ABF000C5AAA /* main.m */,
@@ -114,10 +119,6 @@
 		AA8411571D244AE1000C5AAA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */,
-				AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */,
-				AA446CA81D2564BB00F96268 /* CollectionReusableView.h */,
-				AA446CA91D2564BB00F96268 /* CollectionReusableView.m */,
 				AA8411591D244B50000C5AAA /* CloudCollectionViewController.h */,
 				AA84115A1D244B50000C5AAA /* CloudCollectionViewController.m */,
 				AA8411821D245393000C5AAA /* PicDetailsViewController.h */,
@@ -134,7 +135,14 @@
 				AA8411471D244ABF000C5AAA /* Main.storyboard */,
 				AA84114C1D244ABF000C5AAA /* LaunchScreen.storyboard */,
 				AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */,
+				AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */,
+				AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */,
 				AA446CAB1D25650300F96268 /* CollectionReusableView.xib */,
+				AA446CA81D2564BB00F96268 /* CollectionReusableView.h */,
+				AA446CA91D2564BB00F96268 /* CollectionReusableView.m */,
+				7BCE11811D2D47580057882D /* TableViewCell.xib */,
+				7BCE117F1D2D47580057882D /* TableViewCell.h */,
+				7BCE11801D2D47580057882D /* TableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				TargetAttributes = {
 					AA8411371D244ABF000C5AAA = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = N4Z4DHHUE9;
 					};
 				};
 			};
@@ -209,6 +218,7 @@
 			files = (
 				AA84114E1D244ABF000C5AAA /* LaunchScreen.storyboard in Resources */,
 				AA84114B1D244ABF000C5AAA /* Assets.xcassets in Resources */,
+				7BCE11831D2D47580057882D /* TableViewCell.xib in Resources */,
 				AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */,
 				AA8411491D244ABF000C5AAA /* Main.storyboard in Resources */,
 				AA446CAC1D25650300F96268 /* CollectionReusableView.xib in Resources */,
@@ -231,6 +241,7 @@
 				AA84113D1D244ABF000C5AAA /* main.m in Sources */,
 				AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */,
 				AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */,
+				7BCE11821D2D47580057882D /* TableViewCell.m in Sources */,
 				AA446CAA1D2564BB00F96268 /* CollectionReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,10 +356,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Camera&Cloud/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "TurnToTech.Camera-Cloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -356,10 +370,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Camera&Cloud/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "TurnToTech.Camera-Cloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

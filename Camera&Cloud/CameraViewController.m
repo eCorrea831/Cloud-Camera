@@ -54,14 +54,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.imagePicked = [info objectForKey:UIImagePickerControllerOriginalImage];
     CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date] fileType:@"png"];
     [[[DAO sharedInstance] imageArray] addObject:newImage];
+    //TODO: add to firebase
     
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CloudCollectionViewController * cloudCollectionVC = [storyboard instantiateViewControllerWithIdentifier:@"CloudCollectionViewController"];
-    
-//    UINavigationController *vc = self.tabBarController.viewControllers[0];
-//    
-//    [self presentViewController:vc.childViewControllers[0] animated:YES completion:nil];
-    //[self presentViewController:vc animated:YES completion:nil];
+    [self.tabBarController setSelectedIndex:0];
 }
 
 @end
