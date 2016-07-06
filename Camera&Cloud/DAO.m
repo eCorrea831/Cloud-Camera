@@ -6,6 +6,43 @@
 //  Copyright © 2016 TurnToTech. All rights reserved.
 //
 
+// FIRStorage * storage = [FIRStorage storage];
+// FIRStorageReference *storageRef = [storage referenceForURL:@"gs://cameraandcloud.appspot.com"];
+
+// Create a child reference
+// imagesRef now points to "images"
+// FIRStorageReference *imagesRef = [storageRef child:@"images"];
+// Child references can also take paths delimited by '/'
+// spaceRef now points to "images/space.jpg"
+// imagesRef still points to "images"
+// FIRStorageReference *spaceRef = [storageRef child:@"images/space.jpg"];
+
+// This is equivalent to creating the full reference
+// FIRStorageReference *spaceRef = [storage referenceForURL:@"gs://<your-firebase-storage-bucket>/images/space.jpg"];
+
+// Parent allows us to move to the parent of a reference
+// imagesRef now points to 'images'
+// FIRStorageReference *imagesRef = [spaceRef parent];
+// Root allows us to move all the way back to the top of our bucket
+// rootRef now points to the root
+// FIRStorageReference *rootRef = [spaceRef root];
+
+// References can be chained together multiple times
+// earthRef points to "images/earth.jpg"
+// FIRStorageReference *earthRef = [[spaceRef parent] child:@"earth.jpg"];
+// nilRef is nil, since the parent of root is nil
+// FIRStorageReference *nilRef = [[spaceRef root] parent];
+
+// Reference's path is: "images/space.jpg"
+// This is analogous to a file path on disk
+// spaceRef.fullPath;
+// Reference's name is the last segment of the full path: "space.jpg"
+// This is analogous to the file name
+// spaceRef.name;
+
+// Reference's bucket is the name of the storage bucket where files are stored
+// spaceRef.bucket;
+
 #import "DAO.h"
 
 @implementation DAO
