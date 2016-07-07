@@ -52,7 +52,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [self dismissViewControllerAnimated:true completion:nil];
     
     self.imagePicked = [info objectForKey:UIImagePickerControllerOriginalImage];
-    CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date] fileType:@"png"];
+    CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date]];
     [[[DAO sharedInstance] imageArray] addObject:newImage];
     //TODO: add to firebase
     

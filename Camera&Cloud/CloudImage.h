@@ -17,6 +17,6 @@
 @property (retain, nonatomic) NSDate * dateCreated;
 @property (retain, nonatomic) NSString * fileType;
 
-- (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated fileType:(NSString *)fileType;
+- (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated;
 
 @end
