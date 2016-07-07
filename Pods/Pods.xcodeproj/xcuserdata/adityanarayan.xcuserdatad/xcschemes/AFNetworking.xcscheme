@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C329CFC75830DA9563370466BE7B41F6'
-               BlueprintName = 'Pods-Camera&amp;Cloud'
+               BlueprintIdentifier = '410B25DF16EA5C5B3E2698F74F9625FB'
+               BlueprintName = 'AFNetworking'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-Camera&amp;Cloud.a'>
+               BuildableName = 'libAFNetworking.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
