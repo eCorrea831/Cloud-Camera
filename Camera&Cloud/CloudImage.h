@@ -13,9 +13,8 @@
 @property (nonatomic, retain) UIImage * image;
 @property (nonatomic) int numLikes;
 @property (retain, nonatomic) NSMutableArray * commentsArray;
-@property (retain, nonatomic) NSString * reference;
+@property (retain, nonatomic) NSString * imageName;
 @property (retain, nonatomic) NSDate * dateCreated;
-@property (retain, nonatomic) NSString * fileType;
 
 - (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated;
 

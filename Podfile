@@ -6,11 +6,11 @@ target 'Camera&Cloud' do
   # use_frameworks!
 
   # Pods for Camera&Cloud
-  
-  pod 'Firebase'
 
-  source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+	  pod 'Firebase'
+
+
 pod 'AFNetworking', '~> 2.5'
+pod 'FirebaseStorage'
 
 end

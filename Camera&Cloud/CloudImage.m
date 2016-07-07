@@ -17,7 +17,6 @@
     if (self) {
         _image = image;
         _dateCreated = dateCreated;
-        _fileType = @"image/jpeg";
         
         _numLikes = 0;
         _commentsArray = [[NSMutableArray alloc]init];

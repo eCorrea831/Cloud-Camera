@@ -25,9 +25,6 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     self.commentsTableView.dataSource = self;
     self.picCommentTextField.delegate = self;
     
-    [self.cloudImage.commentsArray addObject:@"I am a test comment."];
-    [self.cloudImage.commentsArray addObject:@"So am I."];
-    
     self.commentsTableView.hidden = YES;
     
     if (self.cloudImage.commentsArray.count >= 1) {
