@@ -87,8 +87,6 @@ static NSString * const reuseIdentifier = @"TableViewCell";
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
-    
-    
     UIAlertAction * deleteAction = [UIAlertAction actionWithTitle:@"Delete Photo"
                                                             style:UIAlertActionStyleDestructive
                                                           handler:^(UIAlertAction * action) {

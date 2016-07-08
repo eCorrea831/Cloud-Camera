@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) UIImage * image;
 @property (nonatomic) int numLikes;
-@property (retain, nonatomic) NSMutableArray * commentsArray;
+@property (retain, nonatomic) NSMutableArray <NSString*> * commentsArray;
 @property (retain, nonatomic) NSString * imageName;
 @property (retain, nonatomic) NSDate * dateCreated;
 
