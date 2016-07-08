@@ -40,31 +40,6 @@
     return self;
 }
 
-- (void)getPhotoFromFirebaseStorageForCloudImage:(CloudImage *)cloudImage {
-    
-    self.storageRef = [[FIRStorage storage] reference];
-    
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentsDirectory = [paths objectAtIndex:0];
-    NSString * filePath = [NSString stringWithFormat:@"file:%@/%@", documentsDirectory, cloudImage.imageName];
-    NSString * filePath2 = [NSString stringWithFormat:@"%@/%@", documentsDirectory, cloudImage.imageName];
-    
-    [[self.storageRef child:cloudImage.imageName] writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
-         if (error) {
-             NSLog(@"Error downloading: %@", error);
-             return;
-         }
-        NSData * data = [[NSData alloc]initWithContentsOfFile:filePath2];
-        cloudImage.image = [UIImage imageWithData:data];
-        [self reloadCollectionVCWithFireBasePhotos];
-     }];
-}
-
-- (void)reloadCollectionVCWithFireBasePhotos {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Update" object:self userInfo:nil];
-}
-
 - (void)getCloudData {
     
     NSURLRequest * request = [NSURLRequest requestWithURL:self.fireBaseURL];
@@ -103,6 +78,43 @@
         });
     }];
     [task resume];
+}
+
+- (void)getPhotoFromFirebaseStorageForCloudImage:(CloudImage *)cloudImage {
+    
+    self.storageRef = [[FIRStorage storage] reference];
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0];
+    NSString * filePath = [NSString stringWithFormat:@"file:%@/%@", documentsDirectory, cloudImage.imageName];
+    NSString * filePath2 = [NSString stringWithFormat:@"%@/%@", documentsDirectory, cloudImage.imageName];
+    
+    [[self.storageRef child:cloudImage.imageName] writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error downloading: %@", error);
+            return;
+        }
+        NSData * data = [[NSData alloc]initWithContentsOfFile:filePath2];
+        cloudImage.image = [UIImage imageWithData:data];
+        [self reloadCollectionVCWithFireBasePhotos];
+    }];
+}
+
+- (void)reloadCollectionVCWithFireBasePhotos {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Update" object:self userInfo:nil];
+}
+
+- (void)addPhotoToFirebaseStorage:(CloudImage *)cloudPhoto {
+    //TODO:use to add new photos to firebase
+}
+
+- (void)updatePhotoInFirebaseStorage:(CloudImage *)cloudPhoto {
+    //TODO:use for updating with likes and comments
+}
+
+- (void)deletePhotoFromFirebaseStorage:(CloudImage *)cloudPhoto {
+    //TODO:use for deleting photos
 }
 
 @end

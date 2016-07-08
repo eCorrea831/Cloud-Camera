@@ -36,6 +36,11 @@ static NSString * const reuseIdentifier = @"TableViewCell";
         
     [self.commentsTableView.layer setBorderColor:[[UIColor colorWithRed:0.82 green:0.81 blue:0.81 alpha:1.0]CGColor]];
     [self.commentsTableView.layer setBorderWidth:1.0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -116,6 +121,29 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self addItem];
     return YES;
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification {
+    [UIView animateWithDuration:0.25 animations:^ {
+        
+        //TODO:see if we can adjust the y to be the height of the keyboard + the height of the textfield
+        CGRect newFrame = self.picCommentTextField.frame;
+        newFrame.origin.y -= 250;
+        self.picCommentTextField.frame = newFrame;
+        
+     }completion:^(BOOL finished) {
+     }];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    [UIView animateWithDuration:0.25 animations:^ {
+        
+        CGRect newFrame = self.picCommentTextField.frame;
+        newFrame.origin.y += 250;
+        self.picCommentTextField.frame = newFrame;
+        
+     }completion:^(BOOL finished) {
+     }];
 }
 
 - (void)addItem {
