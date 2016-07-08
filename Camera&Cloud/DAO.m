@@ -9,6 +9,12 @@
 #import "DAO.h"
 #import "Firebase.h"
 
+@interface DAO ()
+
+@property (strong, nonatomic) FIRStorageReference * storageRef;
+
+@end
+
 @implementation DAO
 
 + (instancetype)sharedInstance {
@@ -28,7 +34,6 @@
     
     self = [super init];
     if (self) {
-        //[self loadData];
         [self getPhotosFromFirebaseStorage];
     }
     return self;
@@ -36,24 +41,31 @@
 
 - (void)getPhotosFromFirebaseStorage {
     
-    [FIRApp configure];
-    FIRStorage * storage = [FIRStorage storage];
-    FIRStorageReference * storageRef = [storage referenceForURL:@"gs://cameraandcloud.appspot.com/"];
+    self.storageRef = [[FIRStorage storage] reference];
     
-    NSArray * pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * docs = [pathArray objectAtIndex:0];
-    NSString * path = [NSString stringWithFormat:@"file:%@/photo_06@3x.jpg", docs];
-    NSURL * localURL = [NSURL URLWithString:path];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0];
+    NSString * filePath = [NSString stringWithFormat:@"file:%@/photo_07@3x.jpg", documentsDirectory];
+    NSString * filePath2 = [NSString stringWithFormat:@"%@/photo_07@3x.jpg", documentsDirectory];
     
-    FIRStorageReference * photoRef = [storageRef child:@"photo_06@3x.jpg"];
-    FIRStorageDownloadTask * downloadTask = [photoRef writeToFile:localURL completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
-        if(error){
-            NSLog(@"%@, %@",error.localizedDescription, error.localizedFailureReason);
-        }
-        
-    }];
+    [[self.storageRef child:@"photo_07@3x.jpg"] writeToFile:[NSURL URLWithString:filePath] completion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+         if (error) {
+             NSLog(@"Error downloading: %@", error);
+             return;
+         }
+        NSData * data = [[NSData alloc]initWithContentsOfFile:filePath2];
+        CloudImage * cloudImage1 = [[CloudImage alloc]initWithImage:[UIImage imageWithData:data] dateCreated:[NSDate date]];
+
+        cloudImage1.imageName = @"photo_07@3x.jpg";
+        [self.imageArray addObject:cloudImage1];
+        [self reloadCollectionVCWithFireBasePhotos];
+     }];
+    NSLog(@"THE FILE PATH IS: %@", filePath);
+}
+
+- (void)reloadCollectionVCWithFireBasePhotos {
     
-    NSLog(@"%@",path);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Update" object:self userInfo:nil];
 }
 
 - (void)loadData {

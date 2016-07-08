@@ -37,6 +37,11 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.picDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"PicDetailsViewController"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:@"Update"
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -112,6 +117,11 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
 
     self.picDetailsVC.cloudImage = [self.dao.imageArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:self.picDetailsVC animated:YES];
+}
+
+- (void)receiveNotification:(NSNotification *)notifiation {
+
+    [self.collectionView reloadData];
 }
 
 @end
