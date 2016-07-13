@@ -64,10 +64,25 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.imagePicked = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date]];
-    [[[DAO sharedInstance] imageArray] addObject:newImage];
-    //TODO: add to firebase
+    newImage.imageName = [self generateMD5:newImage.dateCreated];
+    [[DAO sharedInstance] addPhotoToFirebaseStorage:newImage];
     
     [self.tabBarController setSelectedIndex:0];
+}
+
+- (NSString *) generateMD5:(NSDate *) input {
+    
+    NSString * dateString = [NSString stringWithFormat:@"%@", input];
+    const char * cStr = [dateString UTF8String];
+    unsigned char digest[16];
+    CC_MD5( cStr, strlen(cStr), digest );
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return  output;
 }
 
 

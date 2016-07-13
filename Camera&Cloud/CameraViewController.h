@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CloudImage.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface CameraViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 

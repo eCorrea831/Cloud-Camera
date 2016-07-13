@@ -37,7 +37,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 
     if (self.cloudImage.commentsArray.count >= 1) {
         self.commentsTableView.hidden = NO;
@@ -50,6 +50,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     
     if (self.cloudImage.numLikes >= 1) {
         self.numLikesLabel.hidden = NO;
+        self.heartButton.imageView.image = [UIImage imageNamed:@"like_active"];
     } else {
         self.numLikesLabel.hidden = YES;
         self.heartButton.imageView.image = [UIImage imageNamed:@"icn_like"];
@@ -82,10 +83,14 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 
 - (IBAction)heartClicked:(id)sender {
 
+   // self.heartButton.imageView.image = [UIImage imageNamed:@"like_active"];
+    
+    [self.heartButton setImage:[UIImage imageNamed:@"like_active"] forState:UIControlStateNormal];
+    
     self.cloudImage.numLikes ++;
-    self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.cloudImage.numLikes];
     self.numLikesLabel.hidden = NO;
-    //TODO:firebase
+    self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.cloudImage.numLikes];
+    [[DAO sharedInstance] updatePhotoInFirebaseStorage:self.cloudImage];
 }
 
 - (IBAction)moreOptionsClicked:(id)sender {
@@ -110,15 +115,18 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 }
 
 - (void)deletePhoto {
-    
-    [[[DAO sharedInstance] imageArray] removeObject:self.cloudImage];
-    //TODO:firebase
+
+    [[DAO sharedInstance] deletePhotoFromFirebaseStorage:self.cloudImage];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)commentClicked:(id)sender {
     
     self.picCommentTextField.hidden = NO;
+    
+    CGRect r =  self.picCommentTextField.frame;
+    r.origin.y = self.view.frame.size.height- 150;
+    self.picCommentTextField.frame = r;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -131,11 +139,12 @@ static NSString * const reuseIdentifier = @"TableViewCell";
         
         CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGRect newFrame = self.picCommentTextField.frame;
-        newFrame.origin.y -= keyboardSize.height;
+        newFrame.origin.y = 200;
+    //self.view.frame.size.height - keyboardSize.height - newFrame.size.height;
         self.picCommentTextField.frame = newFrame;
         
      }completion:^(BOOL finished) {
-     }];
+    }];
 }
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
@@ -154,8 +163,9 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     
     self.picCommentTextField.hidden = YES;
     [self.cloudImage.commentsArray addObject:self.picCommentTextField.text];
+
+    [[DAO sharedInstance] updatePhotoInFirebaseStorage:self.cloudImage];
     [self.commentsTableView reloadData];
-    //TODO:firebase
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

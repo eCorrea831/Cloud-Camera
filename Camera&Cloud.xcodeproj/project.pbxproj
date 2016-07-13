@@ -12,6 +12,7 @@
 		7BCE11821D2D47580057882D /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCE11801D2D47580057882D /* TableViewCell.m */; };
 		7BCE11831D2D47580057882D /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BCE11811D2D47580057882D /* TableViewCell.xib */; };
 		7BCE11881D2DA7A40057882D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BCE11871D2DA7A30057882D /* GoogleService-Info.plist */; };
+		99A89E421D36F1D700C940A4 /* ImageComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A89E411D36F1D700C940A4 /* ImageComment.m */; };
 		AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */; };
 		AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */; };
 		AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A4C1D2C3E38004E868F /* DAO.m */; };
@@ -37,6 +38,8 @@
 		7BCE11801D2D47580057882D /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		7BCE11811D2D47580057882D /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		7BCE11871D2DA7A30057882D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99A89E401D36F1D700C940A4 /* ImageComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageComment.h; sourceTree = "<group>"; };
+		99A89E411D36F1D700C940A4 /* ImageComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageComment.m; sourceTree = "<group>"; };
 		9C5889F3C93F3C59A0D85B59 /* Pods-Camera&Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camera&Cloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-Camera&Cloud/Pods-Camera&Cloud.release.xcconfig"; sourceTree = "<group>"; };
 		AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				AA2D3A4C1D2C3E38004E868F /* DAO.m */,
 				AA446CF61D25A9D800F96268 /* CloudImage.h */,
 				AA446CF71D25A9D800F96268 /* CloudImage.m */,
+				99A89E401D36F1D700C940A4 /* ImageComment.h */,
+				99A89E411D36F1D700C940A4 /* ImageComment.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				AA8411461D244ABF000C5AAA /* CameraViewController.m in Sources */,
 				AA8411401D244ABF000C5AAA /* AppDelegate.m in Sources */,
 				AA84113D1D244ABF000C5AAA /* main.m in Sources */,
+				99A89E421D36F1D700C940A4 /* ImageComment.m in Sources */,
 				AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */,
 				AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */,
 				7BCE11821D2D47580057882D /* TableViewCell.m in Sources */,

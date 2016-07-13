@@ -16,12 +16,13 @@
 
 @property (nonatomic, retain) PicDetailsViewController * picDetailsVC;
 @property (nonatomic, retain) DAO * dao;
+
 @end
 
 @implementation CloudCollectionViewController
 
-static NSString * const reuseIdentifier = @"CollectionViewCell";
-static NSString * const ViewIdentifier = @"CollectionReusableView";
+static NSString * const reuseIdentifierCell = @"Cell1";
+static NSString * const reuseIdentifierHeader = @"Header1";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,10 +31,10 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
     self.collectionView.dataSource = self;
     
     UINib * cellNib = [UINib nibWithNibName:@"CollectionViewCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell1"];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifierCell];
     
     UINib * headerNib = [UINib nibWithNibName:@"CollectionReusableView" bundle:nil];
-    [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header1"];
+    [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierHeader];
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.picDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"PicDetailsViewController"];
@@ -72,8 +73,7 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString * ViewIdentifier = @"Header1";
-    CollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ViewIdentifier forIndexPath:indexPath];
+    CollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierHeader forIndexPath:indexPath];
     
     return headerView;
 }
@@ -104,8 +104,7 @@ static NSString * const ViewIdentifier = @"CollectionReusableView";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString * CellIdentifier = @"Cell1";
-    CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifierCell forIndexPath:indexPath];
     
     CloudImage * iv = [self.dao.imageArray objectAtIndex:indexPath.row];
     cell.cellImageView.image = iv.image;

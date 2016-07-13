@@ -105,15 +105,46 @@
 }
 
 - (void)addPhotoToFirebaseStorage:(CloudImage *)cloudPhoto {
-    //TODO:use to add new photos to firebase
+    
+    [self.imageArray addObject:cloudPhoto];
+    
+    NSNumber * likes = [NSNumber numberWithInteger:cloudPhoto.numLikes];
+    NSString * dateString = [NSString stringWithFormat:@"%@", cloudPhoto.dateCreated];
+    
+    NSDictionary * cloudImageDict = @{@"comments" : cloudPhoto.commentsArray, @"date" : dateString, @"likes" : likes, @"name" : cloudPhoto.imageName};
+    
+    NSError * error;
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:cloudImageDict options:0 error:&error];
+    NSString * JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.fireBaseURL];
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+        
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            //TODO:do crap here
+            
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:jsonData];
+            
+        });
+    }];
+    [task resume];
 }
 
 - (void)updatePhotoInFirebaseStorage:(CloudImage *)cloudPhoto {
-    //TODO:use for updating with likes and comments
+    
 }
 
 - (void)deletePhotoFromFirebaseStorage:(CloudImage *)cloudPhoto {
-    //TODO:use for deleting photos
+
+    [self.imageArray removeObject:cloudPhoto];
+    
 }
 
 @end

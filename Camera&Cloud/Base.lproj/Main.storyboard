@@ -73,7 +73,7 @@
                                     <constraint firstAttribute="width" constant="40" id="4h7-Gc-2dE"/>
                                     <constraint firstAttribute="height" constant="40" id="i8j-a5-aR4"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="like_active"/>
+                                <state key="normal" title="Button" image="icn_like"/>
                                 <connections>
                                     <action selector="heartClicked:" destination="jtS-uJ-yWr" eventType="touchUpInside" id="t69-Bf-sbv"/>
                                 </connections>
@@ -288,7 +288,7 @@
         <image name="camera_active" width="32" height="32"/>
         <image name="home_active" width="32" height="32"/>
         <image name="icn_comment" width="48" height="48"/>
+        <image name="icn_like" width="48" height="48"/>
         <image name="icn_like_more" width="48" height="48"/>
-        <image name="like_active" width="48" height="48"/>
     </resources>
 </document>
