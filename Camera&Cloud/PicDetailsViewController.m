@@ -25,12 +25,6 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     self.commentsTableView.dataSource = self;
     self.picCommentTextField.delegate = self;
     
-    self.commentsTableView.hidden = YES;
-    
-    if (self.cloudImage.commentsArray.count >= 1) {
-        self.commentsTableView.hidden = NO;
-    }
-    
     UINib * cellNib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
     [self.commentsTableView registerNib:cellNib forCellReuseIdentifier:@"Cell2"];
         
@@ -44,6 +38,12 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+
+    if (self.cloudImage.commentsArray.count >= 1) {
+        self.commentsTableView.hidden = NO;
+    } else {
+        self.commentsTableView.hidden = YES;
+    }
     
     self.picImage.image = self.cloudImage.image;
     self.picCommentTextField.hidden = YES;
@@ -54,6 +54,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
         self.numLikesLabel.hidden = YES;
         self.heartButton.imageView.image = [UIImage imageNamed:@"icn_like"];
     }
+    [self.commentsTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +85,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     self.cloudImage.numLikes ++;
     self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.cloudImage.numLikes];
     self.numLikesLabel.hidden = NO;
+    //TODO:firebase
 }
 
 - (IBAction)moreOptionsClicked:(id)sender {
@@ -110,6 +112,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (void)deletePhoto {
     
     [[[DAO sharedInstance] imageArray] removeObject:self.cloudImage];
+    //TODO:firebase
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -126,9 +129,9 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (void)keyboardWillShow:(NSNotification*)aNotification {
     [UIView animateWithDuration:0.25 animations:^ {
         
-        //TODO:see if we can adjust the y to be the height of the keyboard + the height of the textfield
+        CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGRect newFrame = self.picCommentTextField.frame;
-        newFrame.origin.y -= 250;
+        newFrame.origin.y -= keyboardSize.height;
         self.picCommentTextField.frame = newFrame;
         
      }completion:^(BOOL finished) {
@@ -138,8 +141,9 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     [UIView animateWithDuration:0.25 animations:^ {
         
+        CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGRect newFrame = self.picCommentTextField.frame;
-        newFrame.origin.y += 250;
+        newFrame.origin.y += keyboardSize.height;
         self.picCommentTextField.frame = newFrame;
         
      }completion:^(BOOL finished) {
@@ -151,6 +155,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
     self.picCommentTextField.hidden = YES;
     [self.cloudImage.commentsArray addObject:self.picCommentTextField.text];
     [self.commentsTableView reloadData];
+    //TODO:firebase
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

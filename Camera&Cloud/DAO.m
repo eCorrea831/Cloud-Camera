@@ -54,7 +54,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSError * jsonError;
-            //issue here
             NSDictionary * parsedData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
             NSLog(@"%@",jsonError.localizedDescription);
             [self.imageArray removeAllObjects];
@@ -66,8 +65,8 @@
                 newCloudImage.numLikes = [parsedData[dict][@"likes"] floatValue];
                 newCloudImage.dateCreated = parsedData[dict][@"date"];
                 newCloudImage.commentsArray = [[NSMutableArray alloc]init];
+                
                 for (NSString * comment in parsedData[dict][@"comments"]) {
-                //TODO:get comments
                     [newCloudImage.commentsArray addObject:parsedData[dict][@"comments"][comment]];
                     NSLog(@"%@", newCloudImage.commentsArray);
                 }
