@@ -16,17 +16,19 @@
 
 @implementation PicDetailsViewController
 
-static NSString * const reuseIdentifier = @"TableViewCell";
+static NSString * const reuseIdentifier = @"Cell2";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Photo Detail";
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     self.picCommentTextField.delegate = self;
     
     UINib * cellNib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
-    [self.commentsTableView registerNib:cellNib forCellReuseIdentifier:@"Cell2"];
+    [self.commentsTableView registerNib:cellNib forCellReuseIdentifier:reuseIdentifier];
         
     [self.commentsTableView.layer setBorderColor:[[UIColor colorWithRed:0.82 green:0.81 blue:0.81 alpha:1.0]CGColor]];
     [self.commentsTableView.layer setBorderWidth:1.0];
@@ -72,18 +74,17 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      
-     static NSString * CellIdentifier = @"Cell2";
-     TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+     TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
      
-     cell.userNameLabel.text = @"eCorrea831";
-     cell.pictureCommentTextView.text = self.cloudImage.commentsArray[indexPath.row];
+     ImageComment * comment1 = self.cloudImage.commentsArray[indexPath.row];
+     
+     cell.userNameLabel.text = comment1.userID;
+     cell.pictureCommentTextView.text = comment1.comment;
 
  return cell;
  }
 
 - (IBAction)heartClicked:(id)sender {
-
-   // self.heartButton.imageView.image = [UIImage imageNamed:@"like_active"];
     
     [self.heartButton setImage:[UIImage imageNamed:@"like_active"] forState:UIControlStateNormal];
     
@@ -123,10 +124,6 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (IBAction)commentClicked:(id)sender {
     
     self.picCommentTextField.hidden = NO;
-    
-    CGRect r =  self.picCommentTextField.frame;
-    r.origin.y = self.view.frame.size.height- 150;
-    self.picCommentTextField.frame = r;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -139,8 +136,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
         
         CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGRect newFrame = self.picCommentTextField.frame;
-        newFrame.origin.y = 200;
-    //self.view.frame.size.height - keyboardSize.height - newFrame.size.height;
+        newFrame.origin.y = self.view.frame.size.height - keyboardSize.height - newFrame.size.height;
         self.picCommentTextField.frame = newFrame;
         
      }completion:^(BOOL finished) {
@@ -152,7 +148,7 @@ static NSString * const reuseIdentifier = @"TableViewCell";
         
         CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         CGRect newFrame = self.picCommentTextField.frame;
-        newFrame.origin.y += keyboardSize.height;
+        newFrame.origin.y += self.view.frame.size.height - keyboardSize.height - newFrame.size.height;
         self.picCommentTextField.frame = newFrame;
         
      }completion:^(BOOL finished) {
@@ -162,16 +158,15 @@ static NSString * const reuseIdentifier = @"TableViewCell";
 - (void)addItem {
     
     self.picCommentTextField.hidden = YES;
-    [self.cloudImage.commentsArray addObject:self.picCommentTextField.text];
+    
+    ImageComment * newComment = [[ImageComment alloc]init];
+    newComment.userID = @"eCorrea831";
+     newComment.comment = self.picCommentTextField.text;
+    [self.cloudImage.commentsArray addObject:newComment];
 
     [[DAO sharedInstance] updatePhotoInFirebaseStorage:self.cloudImage];
     [self.commentsTableView reloadData];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    [self.picCommentTextField resignFirstResponder];
-    [[self view] endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 @end

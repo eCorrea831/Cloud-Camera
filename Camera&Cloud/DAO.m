@@ -67,8 +67,10 @@
                 newCloudImage.commentsArray = [[NSMutableArray alloc]init];
                 
                 for (NSString * comment in parsedData[dict][@"comments"]) {
-                    [newCloudImage.commentsArray addObject:parsedData[dict][@"comments"][comment]];
-                    NSLog(@"%@", newCloudImage.commentsArray);
+                    ImageComment * newImageComment = [[ImageComment alloc]init];
+                    newImageComment.userID = parsedData[dict][@"comments"][comment][@"userID"];
+                    newImageComment.comment = parsedData[dict][@"comments"][comment][@"commentText"];
+                    [newCloudImage.commentsArray addObject:newImageComment];
                 }
 
                 [self getPhotoFromFirebaseStorageForCloudImage:newCloudImage];

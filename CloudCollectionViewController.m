@@ -8,7 +8,6 @@
 
 #import "CloudCollectionViewController.h"
 #import "CollectionViewCell.h"
-#import "CollectionReusableView.h"
 #import "PicDetailsviewController.h"
 #import "DAO.h"
 
@@ -21,8 +20,7 @@
 
 @implementation CloudCollectionViewController
 
-static NSString * const reuseIdentifierCell = @"Cell1";
-static NSString * const reuseIdentifierHeader = @"Header1";
+static NSString * const reuseIdentifier = @"Cell1";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,11 +28,11 @@ static NSString * const reuseIdentifierHeader = @"Header1";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+    self.navigationController.navigationBar.translucent = NO;
+    self.title = @"Moments";
+
     UINib * cellNib = [UINib nibWithNibName:@"CollectionViewCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifierCell];
-    
-    UINib * headerNib = [UINib nibWithNibName:@"CollectionReusableView" bundle:nil];
-    [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierHeader];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.picDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"PicDetailsViewController"];
@@ -63,26 +61,10 @@ static NSString * const reuseIdentifierHeader = @"Header1";
     return self.dao.imageArray.count;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout*)collectionViewFlowLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    
-    UICollectionViewFlowLayout * flowLayout = collectionViewFlowLayout;
-    flowLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 50);
-
-    return flowLayout.headerReferenceSize;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    CollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierHeader forIndexPath:indexPath];
-    
-    return headerView;
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     CGSize collectionViewSize = collectionView.bounds.size;
     collectionViewSize.width = collectionViewSize.height = collectionViewSize.width/3.0;
-
     
     return collectionViewSize;
 }
@@ -104,7 +86,7 @@ static NSString * const reuseIdentifierHeader = @"Header1";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifierCell forIndexPath:indexPath];
+    CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     CloudImage * iv = [self.dao.imageArray objectAtIndex:indexPath.row];
     cell.cellImageView.image = iv.image;

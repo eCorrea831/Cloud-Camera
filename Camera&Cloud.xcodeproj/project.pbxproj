@@ -17,8 +17,6 @@
 		AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */; };
 		AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2D3A4C1D2C3E38004E868F /* DAO.m */; };
 		AA446CA21D25576C00F96268 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AA446CA11D25576C00F96268 /* README */; };
-		AA446CAA1D2564BB00F96268 /* CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA446CA91D2564BB00F96268 /* CollectionReusableView.m */; };
-		AA446CAC1D25650300F96268 /* CollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA446CAB1D25650300F96268 /* CollectionReusableView.xib */; };
 		AA446CF81D25A9D800F96268 /* CloudImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA446CF71D25A9D800F96268 /* CloudImage.m */; };
 		AA84113D1D244ABF000C5AAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84113C1D244ABF000C5AAA /* main.m */; };
 		AA8411401D244ABF000C5AAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA84113F1D244ABF000C5AAA /* AppDelegate.m */; };
@@ -47,9 +45,6 @@
 		AA2D3A4B1D2C3E38004E868F /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		AA2D3A4C1D2C3E38004E868F /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
 		AA446CA11D25576C00F96268 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
-		AA446CA81D2564BB00F96268 /* CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableView.h; sourceTree = "<group>"; };
-		AA446CA91D2564BB00F96268 /* CollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableView.m; sourceTree = "<group>"; };
-		AA446CAB1D25650300F96268 /* CollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableView.xib; sourceTree = "<group>"; };
 		AA446CF61D25A9D800F96268 /* CloudImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudImage.h; sourceTree = "<group>"; };
 		AA446CF71D25A9D800F96268 /* CloudImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudImage.m; sourceTree = "<group>"; };
 		AA8411381D244ABF000C5AAA /* Camera&Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera&Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,9 +156,6 @@
 				AA2D3A481D2C10BD004E868F /* CollectionViewCell.xib */,
 				AA2D3A461D2C10BD004E868F /* CollectionViewCell.h */,
 				AA2D3A471D2C10BD004E868F /* CollectionViewCell.m */,
-				AA446CAB1D25650300F96268 /* CollectionReusableView.xib */,
-				AA446CA81D2564BB00F96268 /* CollectionReusableView.h */,
-				AA446CA91D2564BB00F96268 /* CollectionReusableView.m */,
 				7BCE11811D2D47580057882D /* TableViewCell.xib */,
 				7BCE117F1D2D47580057882D /* TableViewCell.h */,
 				7BCE11801D2D47580057882D /* TableViewCell.m */,
@@ -260,7 +252,6 @@
 				7BCE11831D2D47580057882D /* TableViewCell.xib in Resources */,
 				AA2D3A4A1D2C10BD004E868F /* CollectionViewCell.xib in Resources */,
 				AA8411491D244ABF000C5AAA /* Main.storyboard in Resources */,
-				AA446CAC1D25650300F96268 /* CollectionReusableView.xib in Resources */,
 				AA446CA21D25576C00F96268 /* README in Resources */,
 				7B48C9D51D2DB40100B21E60 /* gitignore.txt in Resources */,
 			);
@@ -331,7 +322,6 @@
 				AA2D3A4D1D2C3E38004E868F /* DAO.m in Sources */,
 				AA2D3A491D2C10BD004E868F /* CollectionViewCell.m in Sources */,
 				7BCE11821D2D47580057882D /* TableViewCell.m in Sources */,
-				AA446CAA1D2564BB00F96268 /* CollectionReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

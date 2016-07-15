@@ -18,6 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [FIRApp configure];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.44 green:0.44 blue:0.57 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
     return YES;
 }
 
