@@ -115,9 +115,8 @@
     
     NSNumber * likes = [NSNumber numberWithInteger:cloudPhoto.numLikes];
     NSString * dateString = [NSString stringWithFormat:@"%@", cloudPhoto.dateCreated];
-    NSString * imageName = [cloudPhoto.imageName stringByAppendingString:@".jpg"];
     
-    NSDictionary * cloudImageDict = @{@"comments" : cloudPhoto.commentsArray, @"date" : dateString, @"likes" : likes, @"name" : imageName};
+    NSDictionary * cloudImageDict = @{@"comments" : cloudPhoto.commentsArray, @"date" : dateString, @"likes" : likes, @"name" : cloudPhoto.imageName};
     
     NSError * error;
     NSData * jsonData = [NSJSONSerialization dataWithJSONObject:cloudImageDict options:0 error:&error];
@@ -142,7 +141,7 @@
             }
         }
         
-        NSString * fileName = [documentsDirectory stringByAppendingFormat:@"/%@", imageName];
+        NSString * fileName = [documentsDirectory stringByAppendingFormat:@"/%@", cloudPhoto.imageName];
         NSData * fileData = UIImageJPEGRepresentation(cloudPhoto.image, 1.0);
         [fileData writeToFile:fileName atomically:YES];
         
@@ -155,11 +154,8 @@
 
 - (void)addPhotoToFirebaseStorage:(CloudImage *)cloudImage {
     
-
-    NSString * imageString = [NSString stringWithFormat:@"%@.jpg", cloudImage.imageName];
-    FIRStorageReference * imageRef = [self.storageRef child:imageString];
-    
-    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] initWithDictionary:@{@"contentType":@"image/jpeg"}];
+    FIRStorageReference * imageRef = [self.storageRef child:cloudImage.imageName];
+    FIRStorageMetadata * metadata = [[FIRStorageMetadata alloc] initWithDictionary:@{@"contentType":@"image/jpeg"}];
     
     FIRStorageUploadTask * uploadTask = [imageRef putData:[NSData dataWithContentsOfFile:cloudImage.filePath.absoluteString] metadata:metadata completion:^(FIRStorageMetadata * metadata, NSError * error) {
         if (error != nil) {

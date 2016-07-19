@@ -67,6 +67,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date]];
     newImage.imageName = [self generateMD5:newImage.dateCreated];
+    newImage.imageName = [newImage.imageName stringByAppendingString:@".jpg"];
     [[DAO sharedInstance] addPhotoInfoToFirebaseDatabase:newImage];
     
     [self.tabBarController setSelectedIndex:0];
