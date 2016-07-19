@@ -15,11 +15,8 @@
 @property (retain, nonatomic) NSMutableArray <CloudImage*> * imageArray;
 
 + (DAO *)sharedInstance;
-
 - (void)addPhotoInfoToFirebaseDatabase:(CloudImage *)cloudPhoto;
-
 - (void)updatePhotoInfoInFirebaseDatabase:(CloudImage *)cloudPhoto;
-
 - (void)deletePhotoInfoFromFirebaseDatabase:(CloudImage *)cloudPhoto;
 
 @end

@@ -11,6 +11,7 @@
 
 @interface CloudImage : NSObject
 
+@property (retain, nonatomic) NSString * id;
 @property (retain, nonatomic) UIImage * image;
 @property (nonatomic) int numLikes;
 @property (retain, nonatomic) NSMutableArray <ImageComment*> * commentsArray;

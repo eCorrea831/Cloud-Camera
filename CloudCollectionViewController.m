@@ -13,8 +13,8 @@
 
 @interface CloudCollectionViewController ()
 
-@property (nonatomic, retain) PicDetailsViewController * picDetailsVC;
-@property (nonatomic, retain) DAO * dao;
+@property (retain, nonatomic) PicDetailsViewController * picDetailsVC;
+@property (retain, nonatomic) DAO * dao;
 
 @end
 

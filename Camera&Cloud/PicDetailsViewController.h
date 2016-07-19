@@ -11,7 +11,7 @@
 
 @interface PicDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic, retain) CloudImage * cloudImage;
+@property (retain, nonatomic) CloudImage * cloudImage;
 
 - (IBAction)heartClicked:(id)sender;
 - (IBAction)moreOptionsClicked:(id)sender;

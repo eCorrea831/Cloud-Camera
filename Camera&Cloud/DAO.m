@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic) FIRStorageReference * storageRef;
 @property (strong, nonatomic) NSURL * fireBaseDatabaseURL;
-@property (strong, nonatomic) NSURL * fireBaseStorageURL;
 
 @end
 
@@ -36,7 +35,6 @@
     self = [super init];
     if (self) {
         self.fireBaseDatabaseURL = [NSURL URLWithString:@"https://cameraandcloud.firebaseio.com/photos.json"];
-        self.fireBaseStorageURL = [NSURL URLWithString:@"gs://cameraandcloud.appspot.com/"];
         
         [self getCloudData];
     }
@@ -61,18 +59,23 @@
             NSLog(@"%@",jsonError.localizedDescription);
             [self.imageArray removeAllObjects];
 
-            for (NSDictionary * dict in parsedData) {
+            
+            NSArray * keys = [parsedData allKeys];
+            for (NSString * key in keys) {
+                
+                NSDictionary * dict = [parsedData objectForKey:key];
                 
                 CloudImage * newCloudImage = [[CloudImage alloc]init];
-                newCloudImage.imageName = parsedData[dict][@"name"];
-                newCloudImage.numLikes = [parsedData[dict][@"likes"] floatValue];
-                newCloudImage.dateCreated = parsedData[dict][@"date"];
+                newCloudImage.id = key;
+                newCloudImage.imageName = dict[@"name"];
+                newCloudImage.numLikes = [dict[@"likes"] floatValue];
+                newCloudImage.dateCreated = dict[@"date"];
                 newCloudImage.commentsArray = [[NSMutableArray alloc]init];
                 
-                for (NSString * comment in parsedData[dict][@"comments"]) {
+                for (NSString * comment in dict[@"comments"]) {
                     ImageComment * newImageComment = [[ImageComment alloc]init];
-                    newImageComment.userID = parsedData[dict][@"comments"][comment][@"userID"];
-                    newImageComment.comment = parsedData[dict][@"comments"][comment][@"commentText"];
+                    newImageComment.userID = dict[@"comments"][comment][@"userID"];
+                    newImageComment.comment = dict[@"comments"][comment][@"commentText"];
                     [newCloudImage.commentsArray addObject:newImageComment];
                 }
 
@@ -159,26 +162,46 @@
     
     FIRStorageUploadTask * uploadTask = [imageRef putData:[NSData dataWithContentsOfFile:cloudImage.filePath.absoluteString] metadata:metadata completion:^(FIRStorageMetadata * metadata, NSError * error) {
         if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSURL * downloadURL = metadata.downloadURL;
-            #pragma unused (downloadURL)
+            NSLog(@"Storage Upload Error: %@", error.localizedDescription);
         }
         #pragma unused (uploadTask)
     }];
 }
 
 - (void)updatePhotoInfoInFirebaseDatabase:(CloudImage *)cloudPhoto {
-    
+    //TODO:complete method
 }
 
 - (void)deletePhotoInfoFromFirebaseDatabase:(CloudImage *)cloudPhoto {
     
+    [self.imageArray removeObject:cloudPhoto];
+    
+    NSString * firebaseString = [NSString stringWithFormat:@"https://cameraandcloud.firebaseio.com/photos/%@.json", cloudPhoto.id];
+
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:firebaseString]];
+
+    [request setHTTPMethod:@"DELETE"];
+    
+    NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+        
+        [self deletePhotoFromFirebaseStorage:cloudPhoto];
+    }];
+    [task resume];
 }
 
 - (void)deletePhotoFromFirebaseStorage:(CloudImage *)cloudPhoto {
 
-    [self.imageArray removeObject:cloudPhoto];
+    FIRStorageReference * imageRef = [self.storageRef child:cloudPhoto.imageName];
+
+    [imageRef deleteWithCompletion:^(NSError *error){
+        if (error != nil) {
+            NSLog(@"Error deleting from firebase: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Successfully deleted image from firebase!");
+        }
+    }];
+
 }
 
 @end
