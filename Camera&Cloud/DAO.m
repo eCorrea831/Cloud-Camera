@@ -7,12 +7,13 @@
 //
 
 #import "DAO.h"
-#import "Firebase.h"
 
 @interface DAO ()
 
 @property (strong, nonatomic) FIRStorageReference * storageRef;
-@property (strong, nonatomic) NSURL * fireBaseURL;
+@property (strong, nonatomic) NSURL * fireBaseDatabaseURL;
+@property (strong, nonatomic) NSURL * fireBaseStorageURL;
+
 @end
 
 @implementation DAO
@@ -34,7 +35,9 @@
     
     self = [super init];
     if (self) {
-        self.fireBaseURL = [NSURL URLWithString:@"https://cameraandcloud.firebaseio.com/photos.json"];
+        self.fireBaseDatabaseURL = [NSURL URLWithString:@"https://cameraandcloud.firebaseio.com/photos.json"];
+        self.fireBaseStorageURL = [NSURL URLWithString:@"gs://cameraandcloud.appspot.com/"];
+        
         [self getCloudData];
     }
     return self;
@@ -42,7 +45,7 @@
 
 - (void)getCloudData {
     
-    NSURLRequest * request = [NSURLRequest requestWithURL:self.fireBaseURL];
+    NSURLRequest * request = [NSURLRequest requestWithURL:self.fireBaseDatabaseURL];
     
     NSURLSession * session = [NSURLSession sharedSession];
     NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
@@ -106,47 +109,78 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Update" object:self userInfo:nil];
 }
 
-- (void)addPhotoToFirebaseStorage:(CloudImage *)cloudPhoto {
+- (void)addPhotoInfoToFirebaseDatabase:(CloudImage *)cloudPhoto {
     
     [self.imageArray addObject:cloudPhoto];
     
     NSNumber * likes = [NSNumber numberWithInteger:cloudPhoto.numLikes];
     NSString * dateString = [NSString stringWithFormat:@"%@", cloudPhoto.dateCreated];
+    NSString * imageName = [cloudPhoto.imageName stringByAppendingString:@".jpg"];
     
-    NSDictionary * cloudImageDict = @{@"comments" : cloudPhoto.commentsArray, @"date" : dateString, @"likes" : likes, @"name" : cloudPhoto.imageName};
+    NSDictionary * cloudImageDict = @{@"comments" : cloudPhoto.commentsArray, @"date" : dateString, @"likes" : likes, @"name" : imageName};
     
     NSError * error;
     NSData * jsonData = [NSJSONSerialization dataWithJSONObject:cloudImageDict options:0 error:&error];
-    NSString * JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-    
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.fireBaseURL];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.fireBaseDatabaseURL];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonData];
     NSURLSession * session = [NSURLSession sharedSession];
     NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"NSURLSession error: %@", error.localizedDescription);
             return;
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
         
-            //TODO:do crap here
-            
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:jsonData];
-            
-        });
+        NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentsDirectory = [paths objectAtIndex:0];
+        NSError * fileError = nil;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:documentsDirectory]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:NO attributes:nil error:&fileError];
+            if (error) {
+                NSLog(@"Documents Directory error: %@", fileError.localizedDescription);
+            }
+        }
+        
+        NSString * fileName = [documentsDirectory stringByAppendingFormat:@"/%@", imageName];
+        NSData * fileData = UIImageJPEGRepresentation(cloudPhoto.image, 1.0);
+        [fileData writeToFile:fileName atomically:YES];
+        
+        cloudPhoto.filePath = [NSURL URLWithString:fileName];
+        
+        [self addPhotoToFirebaseStorage:cloudPhoto];
     }];
     [task resume];
 }
 
-- (void)updatePhotoInFirebaseStorage:(CloudImage *)cloudPhoto {
+- (void)addPhotoToFirebaseStorage:(CloudImage *)cloudImage {
+    
+
+    NSString * imageString = [NSString stringWithFormat:@"%@.jpg", cloudImage.imageName];
+    FIRStorageReference * imageRef = [self.storageRef child:imageString];
+    
+    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] initWithDictionary:@{@"contentType":@"image/jpeg"}];
+    
+    FIRStorageUploadTask * uploadTask = [imageRef putData:[NSData dataWithContentsOfFile:cloudImage.filePath.absoluteString] metadata:metadata completion:^(FIRStorageMetadata * metadata, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSURL * downloadURL = metadata.downloadURL;
+        }
+    }];
+}
+
+- (void)updatePhotoInfoInFirebaseDatabase:(CloudImage *)cloudPhoto {
+    
+}
+
+- (void)deletePhotoInfoFromFirebaseDatabase:(CloudImage *)cloudPhoto {
     
 }
 
 - (void)deletePhotoFromFirebaseStorage:(CloudImage *)cloudPhoto {
 
     [self.imageArray removeObject:cloudPhoto];
-    
 }
 
 @end

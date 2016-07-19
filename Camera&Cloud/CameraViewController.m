@@ -12,6 +12,8 @@
 
 @interface CameraViewController ()
 
+@property (weak, nonatomic) UIImage * imagePicked;
+
 @end
 
 @implementation CameraViewController
@@ -65,7 +67,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     CloudImage * newImage = [[CloudImage alloc]initWithImage:self.imagePicked dateCreated:[NSDate date]];
     newImage.imageName = [self generateMD5:newImage.dateCreated];
-    [[DAO sharedInstance] addPhotoToFirebaseStorage:newImage];
+    [[DAO sharedInstance] addPhotoInfoToFirebaseDatabase:newImage];
     
     [self.tabBarController setSelectedIndex:0];
 }
@@ -77,7 +79,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     unsigned char digest[16];
     CC_MD5( cStr, strlen(cStr), digest );
     
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    NSMutableString * output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
     
     for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
         [output appendFormat:@"%02x", digest[i]];

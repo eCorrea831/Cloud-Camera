@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CloudImage.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @interface CameraViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-
-@property (weak, nonatomic) UIImage * imagePicked;
-
-- (IBAction)openCamera:(id)sender;
-- (IBAction)openPhotoLibrary:(id)sender;
 
 @end
 

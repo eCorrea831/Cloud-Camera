@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "CloudImage.h"
+#import "Firebase.h"
 
 @interface DAO : NSObject
 
-@property (nonatomic, retain) NSMutableArray <CloudImage*> * imageArray;
+@property (retain, nonatomic) NSMutableArray <CloudImage*> * imageArray;
 
 + (DAO *)sharedInstance;
 
-- (void)addPhotoToFirebaseStorage:(CloudImage *)cloudPhoto;
-- (void)updatePhotoInFirebaseStorage:(CloudImage *)cloudPhoto;
-- (void)deletePhotoFromFirebaseStorage:(CloudImage *)cloudPhoto;
+- (void)addPhotoInfoToFirebaseDatabase:(CloudImage *)cloudPhoto;
+
+- (void)updatePhotoInfoInFirebaseDatabase:(CloudImage *)cloudPhoto;
+
+- (void)deletePhotoInfoFromFirebaseDatabase:(CloudImage *)cloudPhoto;
 
 @end

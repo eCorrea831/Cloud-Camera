@@ -8,9 +8,15 @@
 
 #import "PicDetailsViewController.h"
 #import "TableViewCell.h"
-#import "DAO.h"
 
 @interface PicDetailsViewController ()
+
+@property (strong, nonatomic) IBOutlet UIImageView * picImage;
+@property (weak, nonatomic) IBOutlet UITableView * commentsTableView;
+@property (weak, nonatomic) IBOutlet UILabel * numLikesLabel;
+@property (weak, nonatomic) IBOutlet UITextField * picCommentTextField;
+@property (nonatomic) NSString * picComment;
+@property (weak, nonatomic) IBOutlet UIButton * heartButton;
 
 @end
 
@@ -91,7 +97,7 @@ static NSString * const reuseIdentifier = @"Cell2";
     self.cloudImage.numLikes ++;
     self.numLikesLabel.hidden = NO;
     self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.cloudImage.numLikes];
-    [[DAO sharedInstance] updatePhotoInFirebaseStorage:self.cloudImage];
+    [[DAO sharedInstance] updatePhotoInfoInFirebaseDatabase:self.cloudImage];
 }
 
 - (IBAction)moreOptionsClicked:(id)sender {
@@ -117,7 +123,7 @@ static NSString * const reuseIdentifier = @"Cell2";
 
 - (void)deletePhoto {
 
-    [[DAO sharedInstance] deletePhotoFromFirebaseStorage:self.cloudImage];
+    [[DAO sharedInstance] deletePhotoInfoFromFirebaseDatabase:self.cloudImage];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -164,7 +170,7 @@ static NSString * const reuseIdentifier = @"Cell2";
      newComment.comment = self.picCommentTextField.text;
     [self.cloudImage.commentsArray addObject:newComment];
 
-    [[DAO sharedInstance] updatePhotoInFirebaseStorage:self.cloudImage];
+    [[DAO sharedInstance] updatePhotoInfoInFirebaseDatabase:self.cloudImage];
     [self.commentsTableView reloadData];
     [self.view endEditing:YES];
 }

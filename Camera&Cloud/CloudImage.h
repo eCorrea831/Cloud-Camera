@@ -11,12 +11,13 @@
 
 @interface CloudImage : NSObject
 
-@property (nonatomic, retain) UIImage * image;
+@property (retain, nonatomic) UIImage * image;
 @property (nonatomic) int numLikes;
 @property (retain, nonatomic) NSMutableArray <ImageComment*> * commentsArray;
 @property (retain, nonatomic) NSString * imageName;
 @property (retain, nonatomic) NSDate * dateCreated;
 @property (retain, nonatomic) NSString * createdBy;
+@property (retain, nonatomic) NSURL * filePath;
 
 - (instancetype)initWithImage:(UIImage *)image dateCreated:(NSDate *)dateCreated;
 

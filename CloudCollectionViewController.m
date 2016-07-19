@@ -23,8 +23,11 @@
 static NSString * const reuseIdentifier = @"Cell1";
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.dao = [DAO sharedInstance];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -67,11 +70,6 @@ static NSString * const reuseIdentifier = @"Cell1";
     collectionViewSize.width = collectionViewSize.height = collectionViewSize.width/3.0;
     
     return collectionViewSize;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
-    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
