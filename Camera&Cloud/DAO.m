@@ -162,7 +162,9 @@
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             NSURL * downloadURL = metadata.downloadURL;
+            #pragma unused (downloadURL)
         }
+        #pragma unused (uploadTask)
     }];
 }
 
