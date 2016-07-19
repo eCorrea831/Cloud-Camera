@@ -56,6 +56,8 @@ static NSString * const reuseIdentifier = @"Cell2";
     self.picImage.image = self.cloudImage.image;
     self.picCommentTextField.hidden = YES;
     
+    self.numLikesLabel.text = [NSString stringWithFormat:@"%d likes",self.cloudImage.numLikes];
+    
     if (self.cloudImage.numLikes >= 1) {
         self.numLikesLabel.hidden = NO;
         self.heartButton.imageView.image = [UIImage imageNamed:@"like_active"];
