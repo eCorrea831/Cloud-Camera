@@ -87,7 +87,7 @@ static NSString * const reuseIdentifier = @"Cell2";
      ImageComment * comment1 = self.cloudImage.commentsArray[indexPath.row];
      
      cell.userNameLabel.text = comment1.userID;
-     cell.pictureCommentTextView.text = comment1.comment;
+     cell.pictureCommentTextView.text = comment1.commentText;
 
  return cell;
  }
@@ -169,7 +169,7 @@ static NSString * const reuseIdentifier = @"Cell2";
     
     ImageComment * newComment = [[ImageComment alloc]init];
     newComment.userID = @"eCorrea831";
-     newComment.comment = self.picCommentTextField.text;
+     newComment.commentText = self.picCommentTextField.text;
     [self.cloudImage.commentsArray addObject:newComment];
 
     [[DAO sharedInstance] updatePhotoInfoInFirebaseDatabase:self.cloudImage];

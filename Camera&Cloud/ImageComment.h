@@ -11,6 +11,6 @@
 @interface ImageComment : NSObject
 
 @property (retain, nonatomic) NSString * userID;
-@property (retain, nonatomic) NSString * comment;
+@property (retain, nonatomic) NSString * commentText;
 
 @end

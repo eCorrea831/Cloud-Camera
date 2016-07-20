@@ -72,13 +72,16 @@
                 newCloudImage.dateCreated = dict[@"date"];
                 newCloudImage.commentsArray = [[NSMutableArray alloc]init];
                 
-                for (NSString * comment in dict[@"comments"]) {
+                NSDictionary * comments = dict[@"comments"];
+                
+                for (NSString * key in comments.allKeys) {
+                    
                     ImageComment * newImageComment = [[ImageComment alloc]init];
-                    newImageComment.userID = dict[@"comments"][comment][@"userID"];
-                    newImageComment.comment = dict[@"comments"][comment][@"commentText"];
+                    newImageComment.userID = comments[key][@"userID"];
+                    newImageComment.commentText = comments[key][@"commentText"];
                     [newCloudImage.commentsArray addObject:newImageComment];
                 }
-
+    
                 [self getPhotoFromFirebaseStorageForCloudImage:newCloudImage];
                 [self.imageArray addObject:newCloudImage];
             }
@@ -169,8 +172,34 @@
 }
 
 - (void)updatePhotoInfoInFirebaseDatabase:(CloudImage *)cloudPhoto {
-    //TODO:complete method
-}
+
+    NSString * firebaseString = [NSString stringWithFormat:@"https://cameraandcloud.firebaseio.com/photos/%@.json", cloudPhoto.id];
+    
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:firebaseString]];
+    
+    
+    
+    NSMutableDictionary *comments = [[NSMutableDictionary alloc]init];
+    
+    for (int i = 0; i < cloudPhoto.commentsArray.count; i++) {
+        
+        NSString *commentId = [NSString stringWithFormat:@"comment%d", i+1];
+        ImageComment *comment = cloudPhoto.commentsArray[i];
+        [comments setValue:@{@"userID":comment.userID, @"commentText": comment.commentText} forKey:commentId];
+    }
+    
+    NSDictionary * updateDict = @{@"likes":[NSNumber numberWithInteger:cloudPhoto.numLikes], @"comments": comments};
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
+
+    [request setHTTPMethod:@"PATCH"];
+    [request setHTTPBody:jsonData];
+
+    NSURLSessionDataTask * task = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+        
+      }];
+    [task resume];
+  }
 
 - (void)deletePhotoInfoFromFirebaseDatabase:(CloudImage *)cloudPhoto {
     
@@ -201,7 +230,6 @@
             NSLog(@"Successfully deleted image from firebase!");
         }
     }];
-
 }
 
 @end
